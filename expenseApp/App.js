@@ -17,6 +17,7 @@ import ManageExpense from './screens/ManageExpense';
 import RecentExpense from './screens/RecentExpense';
 import AllExpenses from './screens/AllExpenses';
 
+
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
@@ -34,8 +35,8 @@ const App = () => {
       <StatusBar style='auto' />
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name="ExepensesOverview" component={ExpenseOverView} />
           <Stack.Screen name="ManageExpense" component={ManageExpense} />
-
         </Stack.Navigator>
       </NavigationContainer>
 
