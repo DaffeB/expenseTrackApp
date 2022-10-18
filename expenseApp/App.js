@@ -16,15 +16,54 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ManageExpense from './screens/ManageExpense';
 import RecentExpense from './screens/RecentExpense';
 import AllExpenses from './screens/AllExpenses';
+import { GlobalStyles } from './constants/styles'
+import { Image } from 'react-native';
 
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
 function ExpenseOverView() {
-  return <BottomTabs.Navigator>
-    <BottomTabs.Screen name="RecentExpense" component={RecentExpense} />
-    <BottomTabs.Screen name="AllExpenses" component={AllExpenses} />
+  return <BottomTabs.Navigator screenOptions={{
+    headerStyle: {
+      backgroundColor: GlobalStyles.colors.primary500
+    },
+    headerTintColor: 'white',
+    tabBarStyle: {
+      backgroundColor: GlobalStyles.colors.primary500
+    },
+    tabBarActiveTintColor: GlobalStyles.colors.accent500
+  }}>
+    <BottomTabs.Screen
+      name="RecentExpense"
+      component={RecentExpense}
+      options={
+        {
+          title: 'Recent Expenses',
+          tabBarLabel: 'Recent Expenses',
+          tabBarIcon: () =>
+            <Image
+              source={require('./assets/icons/sand-clock.png')}
+              style={{ width: 20, height: 20 }}
+
+            />
+
+          // ./assets/icons/sand-clock.png
+
+        }
+      }
+
+    />
+    <BottomTabs.Screen
+      name="AllExpenses"
+      component={AllExpenses}
+      options={
+        {
+          title: 'All Expenses'
+        }
+      }
+
+    />
   </BottomTabs.Navigator>
 }
 
@@ -35,7 +74,13 @@ const App = () => {
       <StatusBar style='auto' />
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="ExepensesOverview" component={ExpenseOverView} />
+          <Stack.Screen
+            name="ExepensesOverview"
+            component={ExpenseOverView}
+            options={{
+              headerShown: false
+            }}
+          />
           <Stack.Screen name="ManageExpense" component={ManageExpense} />
         </Stack.Navigator>
       </NavigationContainer>
