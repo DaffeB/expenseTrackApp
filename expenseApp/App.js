@@ -32,7 +32,10 @@ function ExpenseOverView() {
     tabBarStyle: {
       backgroundColor: GlobalStyles.colors.primary600
     },
-    tabBarActiveTintColor: GlobalStyles.colors.accent500
+    tabBarActiveTintColor: GlobalStyles.colors.accent500,
+    headerRight: () => {
+
+    }
   }}>
     <BottomTabs.Screen
       name="RecentExpense"
