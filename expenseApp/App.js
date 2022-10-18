@@ -26,11 +26,11 @@ const BottomTabs = createBottomTabNavigator();
 function ExpenseOverView() {
   return <BottomTabs.Navigator screenOptions={{
     headerStyle: {
-      backgroundColor: GlobalStyles.colors.primary500
+      backgroundColor: GlobalStyles.colors.primary600
     },
     headerTintColor: 'white',
     tabBarStyle: {
-      backgroundColor: GlobalStyles.colors.primary500
+      backgroundColor: GlobalStyles.colors.primary600
     },
     tabBarActiveTintColor: GlobalStyles.colors.accent500
   }}>
