@@ -18,6 +18,7 @@ import RecentExpense from './screens/RecentExpense';
 import AllExpenses from './screens/AllExpenses';
 import { GlobalStyles } from './constants/styles'
 import { Image } from 'react-native';
+import IconButtons from './components/UI/IconButtons';
 
 
 const Stack = createNativeStackNavigator();
@@ -34,6 +35,7 @@ function ExpenseOverView() {
     },
     tabBarActiveTintColor: GlobalStyles.colors.accent500,
     headerRight: () => {
+      <IconButtons onPress={() => { }} />
 
     }
   }}>

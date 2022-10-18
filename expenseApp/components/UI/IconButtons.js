@@ -6,7 +6,7 @@ const IconButtons = ({ onPress, icon }) => {
         <Pressable onPress={onPress}
             style={({ pressed }) => pressed && styles.pressed}>
             <View style={styles.buttonContainer}>
-                <Text icon={icon}>Go</Text>
+                <Text style={styles.namme}>Go</Text>
             </View>
         </Pressable>
     )
@@ -18,9 +18,14 @@ const styles = StyleSheet.create({
     buttonContainer: {
         borderRadius: 24,
         padding: 6,
-        margin: 8
+        marginHorizontal: 8,
+        marginVertical: 2
     },
     pressed: {
         opacity: 0.75
+    },
+    namme: {
+        fontSize: 14,
+        color: 'white'
     }
 })
