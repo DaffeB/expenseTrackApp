@@ -2,10 +2,10 @@ import { FlatList, View } from 'react-native'
 import ExpensesList from './ExpensesList';
 import ExpensesSummary from './ExpensesSummary';
 
-function ExpenseOutput({ expenses }) {
+function ExpenseOutput({ expenses, expensesPeriod }) {
     return (
         <View>
-            <ExpensesSummary />
+            <ExpensesSummary expenses={expenses} periodName={expensesPeriod} />
             <ExpensesList />
         </View>
     )

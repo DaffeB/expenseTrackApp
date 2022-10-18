@@ -1,9 +1,10 @@
 import { View, Text } from 'react-native';
 
-function ExpensesSummary() {
+function ExpensesSummary({ periodName, expenses }) {
+    const expensesSum = expenses.reduce((sum, expenses) => { })
     return (
         <View>
-            <Text>PERIOD</Text>
+            <Text>{periodName}</Text>
             <Text>$</Text>
         </View>
     )
