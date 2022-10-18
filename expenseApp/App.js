@@ -9,14 +9,37 @@ import {
   View,
 } from 'react-native';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import ManageExpense from './screens/ManageExpense';
+import RecentExpense from './screens/RecentExpense';
+import AllExpenses from './screens/AllExpenses';
+
+const Stack = createNativeStackNavigator();
+const BottomTabs = createBottomTabNavigator();
+
+function ExpenseOverView() {
+  return <BottomTabs.Navigator>
+    <BottomTabs.Screen name="RecentExpense" component={RecentExpense} />
+    <BottomTabs.Screen name="AllExpenses" component={AllExpenses} />
+  </BottomTabs.Navigator>
+}
+
 const App = () => {
 
   return (
-    <View style={styles.container}>
-      <Text>Hello</Text>
+    <>
       <StatusBar style='auto' />
-    </View>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="ManageExpense" component={ManageExpense} />
 
+        </Stack.Navigator>
+      </NavigationContainer>
+
+    </>
   );
 };
 
