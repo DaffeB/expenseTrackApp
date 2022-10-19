@@ -27,17 +27,25 @@ const BottomTabs = createBottomTabNavigator();
 function ExpenseOverView() {
   return <BottomTabs.Navigator screenOptions={{
     headerStyle: {
-      backgroundColor: GlobalStyles.colors.primary600
+      backgroundColor: GlobalStyles.colors.primary900
     },
-    headerTintColor: 'white',
+    headerTintColor: 'black',
     tabBarStyle: {
-      backgroundColor: GlobalStyles.colors.primary600
+      backgroundColor: GlobalStyles.colors.primary900,
     },
-    tabBarActiveTintColor: GlobalStyles.colors.accent500,
+    tabBarActiveTintColor: '#9381ff',
+    tabBarLabelStyle: {
+      fontSize: 13,
+      fontWeight: '500'
+    },
     headerRight: () => {
-      <IconButtons onPress={() => { }} />
+      <IconButtons
+        size={25}
+        onPress={() => { }}
+      />
 
     }
+
   }}>
     <BottomTabs.Screen
       name="RecentExpense"
@@ -50,13 +58,11 @@ function ExpenseOverView() {
             <Image
               source={require('./assets/icons/sand-clock.png')}
               style={{ width: 20, height: 20 }}
-
             />
-
           // ./assets/icons/sand-clock.png
-
         }
       }
+
 
     />
     <BottomTabs.Screen
@@ -64,7 +70,12 @@ function ExpenseOverView() {
       component={AllExpenses}
       options={
         {
-          title: 'All Expenses'
+          title: 'All Expenses',
+          tabBarIcon: () =>
+            <Image
+              source={require('./assets/icons/poor.png')}
+              style={{ width: 20, height: 20 }}
+            />
         }
       }
 

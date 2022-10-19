@@ -1,12 +1,13 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Image, View } from 'react-native'
 import React from 'react'
 
-const IconButtons = ({ onPress, icon }) => {
+const IconButtons = ({ onPress, icon, size, color }) => {
     return (
-        <Pressable onPress={onPress}
+        <Pressable
+            onPress={onPress}
             style={({ pressed }) => pressed && styles.pressed}>
             <View style={styles.buttonContainer}>
-                <Text style={styles.namme}>Go</Text>
+                <Image name={icon} size={size} color={color} source={require('../UI/icon/plus.png')} />
             </View>
         </Pressable>
     )
@@ -26,6 +27,6 @@ const styles = StyleSheet.create({
     },
     namme: {
         fontSize: 14,
-        color: 'white'
+        color: 'black'
     }
 })
