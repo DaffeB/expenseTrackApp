@@ -25,7 +25,7 @@ const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
 function ExpenseOverView() {
-  return <BottomTabs.Navigator screenOptions={{
+  return <BottomTabs.Navigator screenOptions={({ navigation }) => ({
     headerStyle: {
       backgroundColor: GlobalStyles.colors.primary900
     },
@@ -46,7 +46,7 @@ function ExpenseOverView() {
 
     }
 
-  }}>
+  })}>
     <BottomTabs.Screen
       name="RecentExpense"
       component={RecentExpense}
