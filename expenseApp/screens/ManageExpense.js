@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { Image } from 'react-native';
 import { GlobalStyles } from '../constants/styles';
+import Button from '../components/UI/Button';
 
 function ManageExpense({ route, navigation }) {
     const editedExpenseId = route.params?.expenseId;
@@ -21,9 +22,16 @@ function ManageExpense({ route, navigation }) {
 
     }
 
+    function cancelHandler() { }
+
+    function confirmHandler() { }
 
     return (
         <View style={styles.container}>
+            <View style={styles.buttons}>
+                <Button style={styles.button} mode='flat' onPress={cancelHandler}>Cancel</Button>
+                <Button style={styles.button} onPress={confirmHandler}>{isEditing ? 'Update' : 'Add'}</Button>
+            </View>
 
             {isEditing &&
                 (
@@ -47,8 +55,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 24,
-        backgroundColor: GlobalStyles.colors.primary100
+        backgroundColor: GlobalStyles.colors.primary800
 
+    },
+    buttons: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    button: {
+        minWidth: 200,
+        marginHorizontal: 8
     },
     deleteContainer: {
         marginTop: 16,
@@ -58,8 +75,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     trashIcon: {
-        width: 20,
-        height: 20,
+        width: 30,
+        height: 30,
         opacity: 0.7
     }
 
