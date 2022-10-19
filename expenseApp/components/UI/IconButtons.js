@@ -7,7 +7,7 @@ const IconButtons = ({ onPress, icon, size, color }) => {
             onPress={onPress}
             style={({ pressed }) => pressed && styles.pressed}>
             <View style={styles.buttonContainer}>
-                <Image name={icon} size={size} color={color} source={require('../UI/icon/plus.png')} />
+                <Image style={styles.img} name={icon} size={size} color={color} source={require('../UI/icon/plus.png')} />
             </View>
         </Pressable>
     )
@@ -28,5 +28,10 @@ const styles = StyleSheet.create({
     namme: {
         fontSize: 14,
         color: 'black'
+    },
+    img: {
+        height: 25,
+        width: 25
     }
+
 })

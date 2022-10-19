@@ -2,10 +2,12 @@
 import React from 'react';
 
 import {
+  Pressable,
   SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 
@@ -38,33 +40,47 @@ function ExpenseOverView() {
       fontSize: 13,
       fontWeight: '500'
     },
-    headerRight: () => {
+
+    headerRight: () =>
+    (
+
       <IconButtons
-        size={25}
-        onPress={() => { }}
+        onPress={() =>
+          navigation.navigate('ManageExpense')}
       />
 
-    }
+    )
+
+
 
   })}>
+
+
     <BottomTabs.Screen
       name="RecentExpense"
       component={RecentExpense}
-      options={
-        {
-          title: 'Recent Expenses',
-          tabBarLabel: 'Recent Expenses',
-          tabBarIcon: () =>
-            <Image
-              source={require('./assets/icons/sand-clock.png')}
-              style={{ width: 20, height: 20 }}
-            />
-          // ./assets/icons/sand-clock.png
-        }
-      }
+      options={({ navigation }) => ({
 
+        // headerRight: () => {
+        //   <Pressable onPress={() => navigation.navigate("RecentExpense")}>
+        //   </Pressable>
+        // }
+        headerRight: () =>
+        (
+
+          <IconButtons
+            onPress={() =>
+              navigation.navigate('ManageExpense')}
+          />
+
+        )
+
+      })}
 
     />
+
+
+
     <BottomTabs.Screen
       name="AllExpenses"
       component={AllExpenses}
@@ -76,6 +92,7 @@ function ExpenseOverView() {
               source={require('./assets/icons/poor.png')}
               style={{ width: 20, height: 20 }}
             />
+
         }
       }
 
@@ -89,7 +106,14 @@ const App = () => {
     <>
       <StatusBar style='auto' />
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: GlobalStyles.colors.primary900
+            }
+          }}
+
+        >
           <Stack.Screen
             name="ExepensesOverview"
             component={ExpenseOverView}
@@ -97,7 +121,12 @@ const App = () => {
               headerShown: false
             }}
           />
-          <Stack.Screen name="ManageExpense" component={ManageExpense} />
+          <Stack.Screen name="ManageExpense" component={ManageExpense}
+            options={
+              {
+                presentation: 'modal'
+              }
+            } />
         </Stack.Navigator>
       </NavigationContainer>
 
