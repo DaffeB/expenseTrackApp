@@ -13,7 +13,6 @@ function RecentExpense() {
         return expense.date > date7daysago;
     })
 
-    console.log({ recentExpenses })
     return (
         <View>
             <ExpenseOutput expenses={recentExpenses} expensesPeriod='Last 7 days' />
