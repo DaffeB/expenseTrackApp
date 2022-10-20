@@ -19,12 +19,16 @@ function ManageExpense({ route, navigation }) {
 
 
     function deleteExpenseHandler() {
-
+        navigation.goBack();
     }
 
-    function cancelHandler() { }
+    function cancelHandler() {
+        navigation.goBack();
+    }
 
-    function confirmHandler() { }
+    function confirmHandler() {
+        navigation.goBack();
+    }
 
     return (
         <View style={styles.container}>
@@ -36,11 +40,10 @@ function ManageExpense({ route, navigation }) {
             {isEditing &&
                 (
                     <View style={styles.deleteContainer}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={deleteExpenseHandler}>
                             <Image
                                 style={styles.trashIcon}
                                 source={require('../assets/icons/trash-can.png')}
-                                onPress={deleteExpenseHandler}
                             />
                         </TouchableOpacity>
                     </View>
@@ -61,7 +64,8 @@ const styles = StyleSheet.create({
     buttons: {
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+
     },
     button: {
         minWidth: 200,
