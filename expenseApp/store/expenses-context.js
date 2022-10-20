@@ -63,7 +63,7 @@ function expensesReducer(state, action) {
     switch (action.type) {
         case 'ADD':
             const id = new Date().toString() + Math.random().toString();
-            return [{ ...action.payload }, ...state]
+            return [{ ...action.payload, id: id }, ...state]
         case 'UPDATE':
             const updateableExpenseIndex = state.findIndex(
                 (expense) => expense.id === action.payload.id
@@ -74,7 +74,7 @@ function expensesReducer(state, action) {
             updatedExpenses[updateableExpense] = updatedItem
             return updatedExpenses;
         case 'DELETE':
-            return state.filter((expense) => expense.id !== action.playload)
+            return state.filter((expense) => expense.id !== action.payload)
         default:
             return state
 

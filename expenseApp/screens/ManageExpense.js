@@ -1,11 +1,14 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useContext, useLayoutEffect } from 'react'
 import { Image } from 'react-native';
 import { GlobalStyles } from '../constants/styles';
 import Button from '../components/UI/Button';
+import { ExpenseContext } from '../store/expenses-context';
 
 function ManageExpense({ route, navigation }) {
-    const editedExpenseId = route.params?.expenseId;
+    const expensesCtx = useContext(ExpenseContext)
+
+    const editedExpenseId = route.params.expenseId;
 
     const isEditing = !!editedExpenseId
 
@@ -19,9 +22,11 @@ function ManageExpense({ route, navigation }) {
 
 
     function deleteExpenseHandler() {
+        expensesCtx.deleteExpense(editedExpenseId);
         navigation.goBack();
-        // navigation.popToTop();
+
     }
+
 
     function cancelHandler() {
         navigation.goBack();
