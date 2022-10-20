@@ -20,6 +20,7 @@ function ManageExpense({ route, navigation }) {
 
     function deleteExpenseHandler() {
         navigation.goBack();
+        // navigation.popToTop();
     }
 
     function cancelHandler() {
