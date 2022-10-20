@@ -56,7 +56,7 @@ function ExpenseOverView() {
   })}>
 
 
-    <BottomTabs.Screen
+    {/* <BottomTabs.Screen
       name="RecentExpense"
       component={RecentExpense}
       options={({ navigation }) => ({
@@ -77,8 +77,31 @@ function ExpenseOverView() {
 
       })}
 
-    />
+      THIS WAS THE FIRST 
 
+    /> */}
+
+
+    {/* ///// */}
+
+
+    <BottomTabs.Screen
+      name="RecentExpense"
+      component={RecentExpense}
+      options={
+        {
+          title: 'Recent Expenses',
+          tabBarIcon: () =>
+            <Image
+              onPress={() => navigation.navigate('ManageExpense')}
+              source={require('./assets/icons/sand-clock.png')}
+              style={{ width: 20, height: 20 }}
+            />
+
+        }
+      }
+
+    />
 
 
     <BottomTabs.Screen
