@@ -35,5 +35,4 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: GlobalStyles.colors.primary500
     }
-
 })
