@@ -8,7 +8,7 @@ import { ExpenseContext } from '../store/expenses-context';
 function ManageExpense({ route, navigation }) {
     const expensesCtx = useContext(ExpenseContext)
 
-    const editedExpenseId = route.params.expenseId;
+    const editedExpenseId = route.params?.expenseId;
 
     const isEditing = !!editedExpenseId
 
@@ -17,43 +17,61 @@ function ManageExpense({ route, navigation }) {
             title: isEditing ? 'Edit Expense' : 'Add Expense'
         })
 
-
     }, [navigation, isEditing])
-
 
     function deleteExpenseHandler() {
         expensesCtx.deleteExpense(editedExpenseId);
         navigation.goBack();
-
     }
-
 
     function cancelHandler() {
         navigation.goBack();
     }
 
+
+
     function confirmHandler() {
+        if (isEditing) {
+
+            expensesCtx.updateExpense(
+                editedExpenseId,
+                {
+                    description: 'tesssst!',
+                    amount: 200,
+                    date: new Date('2022-10-21')
+                })
+        } else {
+            expensesCtx.addExpense(
+                {
+                    description: 'TEST!',
+                    amount: 100,
+                    date: new Date('2022-10-20')
+                })
+        }
         navigation.goBack();
     }
 
     return (
         <View style={styles.container}>
             <View style={styles.buttons}>
-                <Button style={styles.button} mode='flat' onPress={cancelHandler}>Cancel</Button>
-                <Button style={styles.button} onPress={confirmHandler}>{isEditing ? 'Update' : 'Add'}</Button>
+                <Button style={styles.button} mode='flat' onPress={cancelHandler}>
+                    Cancel
+                </Button>
+                <Button style={styles.button} onPress={confirmHandler}>
+                    {isEditing ? 'Update' : 'Add'}
+                </Button>
             </View>
 
-            {isEditing &&
-                (
-                    <View style={styles.deleteContainer}>
-                        <TouchableOpacity onPress={deleteExpenseHandler}>
-                            <Image
-                                style={styles.trashIcon}
-                                source={require('../assets/icons/trash-can.png')}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                )}
+            {isEditing && (
+                <View style={styles.deleteContainer}>
+                    <TouchableOpacity onPress={deleteExpenseHandler}>
+                        <Image
+                            style={styles.trashIcon}
+                            source={require('../assets/icons/trash-can.png')}
+                        />
+                    </TouchableOpacity>
+                </View>
+            )}
         </View>
     )
 }
