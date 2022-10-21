@@ -1,20 +1,10 @@
 
 import React from 'react';
-
-import {
-  Pressable,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Pressable, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import ManageExpense from './screens/ManageExpense';
 import RecentExpense from './screens/RecentExpense';
 import AllExpenses from './screens/AllExpenses';
@@ -155,7 +145,6 @@ const App = () => {
           </Stack.Navigator>
         </NavigationContainer>
       </ExpensesContextProvider>
-
     </>
   );
 };
