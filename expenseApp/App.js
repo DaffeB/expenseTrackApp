@@ -20,7 +20,7 @@ const BottomTabs = createBottomTabNavigator();
 function ExpenseOverView() {
   return <BottomTabs.Navigator screenOptions={({ navigation }) => ({
     headerStyle: {
-      backgroundColor: GlobalStyles.colors.primary900
+      backgroundColor: GlobalStyles.colors.primary900,
     },
     headerTintColor: 'black',
     tabBarStyle: {
@@ -80,6 +80,7 @@ function ExpenseOverView() {
       name="RecentExpense"
       component={RecentExpense}
       options={
+
         {
           title: 'Recent Expenses',
           tabBarIcon: () =>
@@ -125,6 +126,7 @@ const App = () => {
             screenOptions={{
               headerStyle: {
                 backgroundColor: GlobalStyles.colors.primary900
+
               }
             }}
 
