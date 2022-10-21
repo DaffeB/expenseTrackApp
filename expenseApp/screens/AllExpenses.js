@@ -8,7 +8,11 @@ function AllExpenses() {
 
     return (
         <View>
-            <ExpenseOutput expenses={expensesCtx.expenses} expensesPeriod='Total' />
+            <ExpenseOutput
+                expenses={expensesCtx.expenses}
+                expensesPeriod='Total'
+                fallBackText="No expenses registered"
+            />
         </View>
     )
 }
