@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
 import React, { useContext, useLayoutEffect } from 'react'
 import { Image } from 'react-native';
 import { GlobalStyles } from '../constants/styles';
@@ -53,6 +53,7 @@ function ManageExpense({ route, navigation }) {
 
     return (
         <View style={styles.container}>
+            <TextInput />
             <View style={styles.buttons}>
                 <Button style={styles.button} mode='flat' onPress={cancelHandler}>
                     Cancel
