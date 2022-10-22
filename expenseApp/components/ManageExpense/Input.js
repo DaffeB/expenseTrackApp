@@ -2,11 +2,11 @@ import { View, Text, TextInput } from 'react-native'
 
 
 
-function Input() {
+function Input({ label, textInputConfig }) {
     return (
         <View>
-            <Text>Label</Text>
-            <TextInput />
+            <Text>{label}</Text>
+            <TextInput {...textInputConfig} />
         </View>
     )
 }
