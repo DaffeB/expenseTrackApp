@@ -20,7 +20,9 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, }) {
 
     }
 
-    function submitHandler() { }
+    function submitHandler() {
+
+    }
     return (
         <View style={styles.form}>
             <Text style={styles.title}>Your Expense</Text>

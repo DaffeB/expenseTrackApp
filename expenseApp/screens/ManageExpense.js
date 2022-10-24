@@ -54,11 +54,15 @@ function ManageExpense({ route, navigation }) {
 
     return (
         <View style={styles.container}>
-            <ExpenseForm onCancel={cancelHandler} />
+            <ExpenseForm
+                submitButtonLabel={isEditing ? 'Update' : "Add"}
+                onCancel={cancelHandler}
+            />
 
             {isEditing && (
                 <View style={styles.deleteContainer}>
-                    <TouchableOpacity onPress={deleteExpenseHandler}>
+                    <TouchableOpacity
+                        onPress={deleteExpenseHandler}>
                         <Image
                             style={styles.trashIcon}
                             source={require('../assets/icons/trash-can.png')}
