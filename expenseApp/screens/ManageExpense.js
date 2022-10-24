@@ -31,23 +31,11 @@ function ManageExpense({ route, navigation }) {
 
 
 
-    function confirmHandler() {
+    function confirmHandler(expenseData) {
         if (isEditing) {
-
-            expensesCtx.updateExpense(
-                editedExpenseId,
-                {
-                    description: 'tesssst!',
-                    amount: 200,
-                    date: new Date('2022-10-21')
-                })
+            expensesCtx.updateExpense(editedExpenseId, expenseData)
         } else {
-            expensesCtx.addExpense(
-                {
-                    description: 'TEST!',
-                    amount: 100,
-                    date: new Date('2022-10-20')
-                })
+            expensesCtx.addExpense(expenseData)
         }
         navigation.goBack();
     }
