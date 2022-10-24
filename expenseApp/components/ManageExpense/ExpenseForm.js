@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native'
 import Input from './Input';
+import Button from '../UI/Button';
 
 function ExpenseForm() {
     const [inputValues, setAmountValues] = useState({
