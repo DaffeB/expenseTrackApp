@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, Alert } from 'react-native'
 import Input from './Input';
 import Button from '../UI/Button';
 import getFormattedDate from '../../util/date';
+import { GlobalStyles } from '../../constants/styles';
 
 
 function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
@@ -127,7 +128,8 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
                 }}
             />
             {formIsInvalid && (
-                <Text>Invalid input values - please check your entered data!</Text>
+                <Text style={styles.errorText}>Invalid input values. {'\n'} Please
+                    check your entered data!</Text >
             )}
             <View style={styles.buttons}>
                 <Button style={styles.button} mode='flat' onPress={onCancel}>
@@ -163,10 +165,18 @@ const styles = StyleSheet.create({
     inputs: {
         marginBottom: 120
     },
+    errorText: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: GlobalStyles.colors.error500,
+        margin: 8
+
+    },
     buttons: {
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
 
     },
     button: {
