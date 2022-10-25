@@ -44,6 +44,7 @@ function ManageExpense({ route, navigation }) {
         <View style={styles.container}>
             <ExpenseForm
                 submitButtonLabel={isEditing ? 'Update' : "Add"}
+                onSubmit={confirmHandler}
                 onCancel={cancelHandler}
             />
 
