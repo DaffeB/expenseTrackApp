@@ -6,17 +6,38 @@ import getFormattedDate from '../../util/date';
 
 
 function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
-    const [inputValues, setAmountValues] = useState({
-        amount: defaultValues ? defaultValues.amount.toString() : '',
-        date: defaultValues ? getFormattedDate(defaultValues.date) : '',
-        description: defaultValues ? defaultValues.description : ','
+    const [inputs, setInputs] = useState({
+        amount: {
+            value: defaultValues ? defaultValues.amount.toString() : '',
+            isValid: !!defaultValues
+            // isValid: defaultValues ? true : false, ///this forms is valid too
+        },
+        date: {
+            value: defaultValues ? getFormattedDate(defaultValues.date) : '',
+            isValid: !!defaultValues
+            // isValid: defaultValues ? true : false
+        },
+        description: {
+            value: defaultValues ? defaultValues.description : ',',
+            isValid: !!defaultValues
+            // isValid: defaultValues ? true : false
+        }
+
+
+        // amount: defaultValues ? defaultValues.amount.toString() : '',
+        // date: defaultValues ? getFormattedDate(defaultValues.date) : '',
+        // description: defaultValues ? defaultValues.description : ','
     })
 
-    function inputChangeHandler(inputIdentifier, enteredAmount) {
-        setAmountValues((curInputValue) => {
+    function inputChangeHandler(inputIdentifier, enteredValue) {
+        setInputs((curInputs) => {
             return {
-                ...curInputValue,
-                [inputIdentifier]: enteredAmount
+                ...curInputs,
+                [inputIdentifier]:
+                {
+                    value: enteredValue,
+                    isValid: true
+                }
             }
         })
 
@@ -25,9 +46,9 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
     function submitHandler() {
 
         const expenseData = {
-            amount: + inputValues.amount,
-            date: new Date(inputValues.date),
-            description: inputValues.description
+            amount: + inputs.amount.value,
+            date: new Date(inputs.date.value),
+            description: inputs.description.value
         }
 
         const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
@@ -52,7 +73,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
                     textInputConfig={{
                         keyboardType: "decimal-pad",
                         onChangeText: inputChangeHandler.bind(this, 'amount'),
-                        value: inputValues.amount,
+                        value: inputs.amount.value,
 
                     }} />
                 <Input
@@ -60,7 +81,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
                         placeholder: 'YYYY-MM-DD',
                         maxLength: 10,
                         onChangeText: inputChangeHandler.bind(this, 'date'),
-                        value: inputValues.date,
+                        value: inputs.date.value,
                     }} />
             </View>
             <Input style={styles.inputs}
@@ -69,7 +90,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
                     // autoCapitalize: 'none',
                     // autoCorrect: false //default is true
                     onChangeText: inputChangeHandler.bind(this, 'description'),
-                    value: inputValues.description,
+                    value: inputs.description.value,
                 }} />
             <View style={styles.buttons}>
                 <Button style={styles.button} mode='flat' onPress={onCancel}>
