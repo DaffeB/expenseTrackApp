@@ -9,17 +9,18 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
     const [inputs, setInputs] = useState({
         amount: {
             value: defaultValues ? defaultValues.amount.toString() : '',
-            isValid: !!defaultValues
+            // isValid: !!defaultValues
+            isValid: true, // we add this because we dont se error message at the start
             // isValid: defaultValues ? true : false, ///this forms is valid too
         },
         date: {
             value: defaultValues ? getFormattedDate(defaultValues.date) : '',
-            isValid: !!defaultValues
+            isValid: true,
             // isValid: defaultValues ? true : false
         },
         description: {
             value: defaultValues ? defaultValues.description : ',',
-            isValid: !!defaultValues
+            isValid: true,
             // isValid: defaultValues ? true : false
         }
 
