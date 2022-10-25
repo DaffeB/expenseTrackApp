@@ -30,6 +30,10 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
             description: inputValues.description
         }
 
+        const amountIsValid = !isNan(expenseData.amount) && expenseData.amount > 0;
+        const dateIsValid = expenseData.date.toString() === 'Invalid Date';
+        const descriptionValid = expenseData.description.trim().length > 0;
+
         onSubmit(expenseData);
 
     }
