@@ -56,13 +56,43 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
         const descriptionValid = expenseData.description.trim().length > 0;
 
         if (!amountIsValid || !dateIsValid || descriptionValid) {
-            Alert.alert('Invalid input', 'Please check your input values')
+            // Alert.alert('Invalid input', 'Please check your input values')
+            setInputs((curInputs) => {
+                return {
+                    amount:
+                    {
+                        value: curInputs.amount.value,
+                        isValid: amountIsValid
+                    },
+
+                    date:
+                    {
+                        value: curInputs.date.value,
+                        isValid: dateIsValid
+                    },
+
+                    description:
+                    {
+                        value: curInputs.description.value,
+                        isValid: descriptionValid
+                    }
+                }
+            })
             return;
         }
 
         onSubmit(expenseData);
 
     }
+
+
+
+    const formIsInvalid =
+        !inputs.amount.isValid ||
+        !inputs.date.isValid ||
+        !inputs.description.isValid;
+
+
     return (
         <View style={styles.form}>
             <Text style={styles.title}>Your Expense</Text>
@@ -82,7 +112,9 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
                         maxLength: 10,
                         onChangeText: inputChangeHandler.bind(this, 'date'),
                         value: inputs.date.value,
-                    }} />
+                    }}
+                />
+
             </View>
             <Input style={styles.inputs}
                 label="Description" textInputConfig={{
@@ -91,7 +123,11 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
                     // autoCorrect: false //default is true
                     onChangeText: inputChangeHandler.bind(this, 'description'),
                     value: inputs.description.value,
-                }} />
+                }}
+            />
+            {formIsInvalid && (
+                <Text>Invalid input values - please check your entered data!</Text>
+            )}
             <View style={styles.buttons}>
                 <Button style={styles.button} mode='flat' onPress={onCancel}>
                     Cancel
@@ -100,7 +136,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
                     {submitButtonLabel}
                 </Button>
             </View>
-        </View>
+        </View >
     )
 
 }
