@@ -10,8 +10,8 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
     const [inputs, setInputs] = useState({
         amount: {
             value: defaultValues ? defaultValues.amount.toString() : '',
-            // isValid: !!defaultValues
             isValid: true, // we add this because we dont se error message at the start
+            // isValid: !!defaultValues
             // isValid: defaultValues ? true : false, ///this forms is valid too
         },
         date: {
@@ -20,7 +20,7 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
             // isValid: defaultValues ? true : false
         },
         description: {
-            value: defaultValues ? defaultValues.description : ',',
+            value: defaultValues ? defaultValues.description : '',
             isValid: true,
             // isValid: defaultValues ? true : false
         }
@@ -31,6 +31,14 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
         // description: defaultValues ? defaultValues.description : ','
     })
 
+    // console.log(inputIdentifier)
+    // console.log({
+    //     [inputIdentifier]:
+    // {
+    //     value: enteredValue,
+    //     isValid: true
+    // }
+    // })
     function inputChangeHandler(inputIdentifier, enteredValue) {
         setInputs((curInputs) => {
             return {
@@ -54,10 +62,11 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
         }
 
         const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
-        const dateIsValid = expenseData.date.toString() === 'Invalid Date';
+        const dateIsValid = expenseData.date.toString() !== 'Invalid Date';
         const descriptionValid = expenseData.description.trim().length > 0;
 
-        if (!amountIsValid || !dateIsValid || descriptionValid) {
+
+        if (!amountIsValid || !dateIsValid || !descriptionValid) {
             // Alert.alert('Invalid input', 'Please check your input values')
             setInputs((curInputs) => {
                 return {
@@ -100,7 +109,6 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
             <Text style={styles.title}>Your Expense</Text>
             <View style={styles.inputsRow}>
                 <Input
-
                     label="Amount"
                     invalid={!inputs.amount.isValid}
                     textInputConfig={{
@@ -121,7 +129,8 @@ function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
                 />
 
             </View>
-            <Input style={styles.inputs}
+            <Input
+                style={styles.inputs}
                 label="Description"
                 invalid={!inputs.description.isValid}
                 textInputConfig={{
@@ -167,6 +176,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+
     inputs: {
         marginBottom: 120
     },
