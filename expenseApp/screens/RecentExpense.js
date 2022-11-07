@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import ExpenseOutput from '../components/ExpenseOutput/ExpenseOutput';
+import LoadingOverlary from '../components/UI/LoadingOverlay';
 import { ExpenseContext } from '../store/expenses-context';
 import { getDateMinusDays } from '../util/date';
 import { fetchExpenses } from '../util/http';
@@ -13,11 +14,17 @@ function RecentExpense() {
 
     useEffect(() => {
         async function getExpenses() {
+            setIsFetching(true)
             const expenses = await fetchExpenses();
+            setIsFetching(false)
             expensesCtx.setExpenses(expenses);
         }
         getExpenses();
     }, [])
+
+    if (isFetching) {
+        return <LoadingOverlary />
+    }
 
     const recentExpenses = expensesCtx.expenses.filter((expense) => {
         const today = new Date();
