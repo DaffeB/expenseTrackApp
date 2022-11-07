@@ -6,6 +6,7 @@ import { getDateMinusDays } from '../util/date';
 import { fetchExpenses } from '../util/http';
 
 function RecentExpense() {
+    const [isFetching, setIsFetching] = useState(true)
     const expensesCtx = useContext(ExpenseContext)
 
 
