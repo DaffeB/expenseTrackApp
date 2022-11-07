@@ -10,7 +10,6 @@ function Button({ children, onPress, mode }) {
                 <View style={[styles.button, mode === 'flat' && styles.flat]}>
                     <Text style={[styles.buttonText, mode === 'flat' && styles.flatText]}>{children}</Text>
                 </View>
-
             </Pressable>
         </View>
     )
